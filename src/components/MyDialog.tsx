@@ -4,7 +4,6 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
@@ -41,17 +40,53 @@ const MyDialog = ({
             {" "}
             <Code className="size-10 text-zinc-200 " />
           </DrawerTrigger>
-          <DrawerContent>
+          <DrawerContent className="p-1">
             <DrawerHeader>
               <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-              <DrawerDescription>
-                This action cannot be undone.
-              </DrawerDescription>
             </DrawerHeader>
+            <div className="flex gap-3 w-full flex-col overflow-y-auto min-h-96 ">
+              <div className="w-full aspect-square  relative">
+                <MyImage src={product.image} alt={product.name} />
+              </div>
+
+              <div className="px-2">
+                <h1 className="font-bold text-lg">{product.name}</h1>
+                {product.off ? (
+                  <p>
+                    {" "}
+                    <span className="line-through">
+                      {" "}
+                      &#8377;{product.minPrice.toFixed(2)}
+                    </span>{" "}
+                    <span className="text-green-600">
+                      &#8377;{product.maxPrice.toFixed(2)}
+                    </span>
+                  </p>
+                ) : (
+                  <p className="text-zinc-600">
+                    {" "}
+                    &#8377;{product.minPrice.toFixed(2)} - &#8377;
+                    {product.maxPrice.toFixed(2)}
+                  </p>
+                )}
+
+                <ul className="list-disc list-inside">
+                  <li> Hand Picked Kashmiri Whole Mirchi</li>
+                  <li>
+                    Hand Sorted To make sure every Chilli is of good quality
+                  </li>
+                  <li>
+                    Pure Kashmiri Mirchi Whole Pure, No added Color Or
+                    Fragrances
+                  </li>
+                  <li>Big Red Colour Kashmiri Chillis Whole</li>
+                </ul>
+              </div>
+            </div>
             <DrawerFooter>
-              <Button onClick={() => toast("comming soon")}>Learn More</Button>
+              <Button type="button" onClick={() => toast("comming soon")}>Learn More</Button>
               <DrawerClose>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline" className="w-full">Cancel</Button>
               </DrawerClose>
             </DrawerFooter>
           </DrawerContent>

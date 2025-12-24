@@ -12,8 +12,8 @@ const ProductCard = (product: Product) => {
       </div>
     );
   return (
-    <div className="group xl:w-80 lg:w-96 w-64 rounded-lg space-y-2">
-      <div className="relative border w-full xl:h-80 lg:h-96 h-64 overflow-hidden rounded-lg">
+    <div className="group xl:w-80 lg:w-96 sm:w-72 w-52 rounded-lg space-y-2 aspect-square">
+      <div className="relative border w-full  aspect-square overflow-hidden rounded-lg">
         <MyDialog
           className={
             "absolute right-2 bottom-2 md:opacity-0 group-hover:opacity-100  duration-100 ease-out -rotate-45"

@@ -16,25 +16,26 @@ export default function Home() {
   return (
     <>
       <section className="md:px-10 px-5">
-        <div className="rounded-lg relative flex justify-end items-center px-4 xl:h-[90vh] h-[40vh]">
+        <div className="rounded-lg relative flex justify-end items-center max-lg:aspect-3/2 xl:h-[90vh] w-full">
           <MyImage
             src={
               "https://alfajermart.com/wp-content/uploads/2024/09/Untitled-design.jpg?id=38200"
             }
             alt={"hero-image"}
-            className="rounded-lg object-cover object-center  absolute top-0 left-0 -z-10"
+            className="rounded-lg object-cover object-center absolute top-0 left-0 -z-10"
             priority={true}
           />
+          <div className="absolute inset-0 bg-black/40 lg:bg-black/10 rounded-lg" />
 
-          <div className="z-10 lg:w-140 flex flex-col brder border-black gap-4">
-            <span className="bg-accent p-1.5 max-md:text-sm w-fit rounded-md">
+          <div className="z-10 lg:w-140 flex flex-col  md:gap-4 p-4 text-white">
+            <span className="bg-white/10 backdrop-blur-3xl p-1.5 max-md:text-sm w-fit rounded-md ">
               Pure Healthy
             </span>
             <div className="space-y-4 ">
-              <h1 className="md:text-5xl text-3xl font-bold  text-[#ffdb76] ">
+              <h1 className="md:text-5xl text-2xl font-bold   ">
                 Kashmiri Dry Fruits & Himalayan Shilajit
               </h1>
-              <p className="lg:text-md   text-[#fff2d0]">
+              <p className="md:text-lg text-sm  text-zinc-100">
                 Don&#39;t get stuck with fake products! We are a Kashmir-based
                 distributor of authentic Shilajit, premium saffron, and
                 high-quality dry fruits. With us, you get genuine products
@@ -45,7 +46,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="md:px-20 px-5">
+      <section className="lg:px-20 md:px-10 px-5">
         <Shipingbelive />
       </section>
 
@@ -66,7 +67,7 @@ export default function Home() {
               >
                 <div className="flex flex-col items-center space-y-4">
                   <div
-                    className="relative md:w-64 md:h-64 h-48 w-48 rounded-full overflow-hidden flex items-center justify-center"
+                    className="relative lg:w-64 lg:h-64 h-48 w-48 rounded-full overflow-hidden flex items-center justify-center"
                     style={{ backgroundColor: bg }}
                   >
                     <MyImage
@@ -107,7 +108,7 @@ export default function Home() {
             align: "start",
             loop: true,
           }}
-          className="w-[90%] mx-auto"
+          className="w-[80%] mx-auto"
         >
           <CarouselContent className="flex gap-6">
             {certificates.map(({ certificate, label }, index) => (
@@ -124,7 +125,7 @@ export default function Home() {
                     className="rounded-full"
                   />
 
-                  <div className="relative w-96 h-80 rounded-lg overflow-hidden">
+                  <div className="relative w-96 aspect-3/2 rounded-lg overflow-hidden">
                     <MyImage
                       src={certificate}
                       alt="certificate"

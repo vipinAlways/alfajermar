@@ -12,21 +12,22 @@ const Footer = () => {
   const isMobile = useIsMobile();
   return (
     <div className="w-full space-y-9">
-      <div className="flex items-center justify-between w-full gap-5 max-md:flex-col">
-        <div>
+      <div className="flex items-center justify-between  w-full gap-5 max-md:flex-col">
+        <div className="flex flex-col gap-4 max-md:items-center">
           <Link href="/" className="">
             <MyImage
               src={
                 "https://alfajermart.com/wp-content/uploads/2024/05/alfajar-lgo.webp"
               }
               alt="logo"
-              width={isMobile ? 120 : 240}
-              height={isMobile ? 120 : 240}
+              width={240}
+              height={240}
+              className="object-cover "
             />
           </Link>
 
-          <div>
-            <Locate className="text-black" />
+          <div className="space-x-3">
+            <Locate className="text-black inline" />
 
             <span>
               One Chase Manhattan Plaza New York, NY 10005, USA +1 554 883 2032

@@ -37,22 +37,22 @@ const Nav = () => {
   if (isMobile)
     return (
       <div className="max-w-md py-3 flex items-center px-5 justify-between">
-        <Sheet>
+        <Sheet >
           <SheetTrigger className="text-zinc-100 hidden max-lg:flex">
             <Menu className="text-zinc-700" />
           </SheetTrigger>
           <SheetContent
             side={"left"}
-            className="w-full bg-accent text-accent-foreground"
+            className="w-60 bg-accent text-accent-foreground"
           >
             <SheetHeader>
               <SheetTitle>Al Fajer Mart</SheetTitle>
-              <nav className="flex flex-col gap-y-2 pt-6">
+              <nav className="flex flex-col gap-y-2 pt-2">
                 <Link
                   href={"#"}
-                  className="w-full justify-start hover:bg-zinc-600 p-1.5 rounded-lg flex"
+                  className="w-full items-center hover:bg-zinc-600 p-1.5 rounded-lg flex text-lg gap-2 font-semibold"
                 >
-                  <ShoppingBasket className="size-4" />, Shop
+                  <ShoppingBasket className="size-9 " /> Shop
                 </Link>
               </nav>
             </SheetHeader>

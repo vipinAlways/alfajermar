@@ -38,7 +38,7 @@ export default function RootLayout({
       >
         <LayoutLoader>
           <header className="sticky -top-8 z-50 bg-background space-y-1">
-            <p className="w-full bg-zinc-500 text-center py-1">
+            <p className="w-full bg-zinc-500 text-center py-1 text-sm md:text-md">
               Premium Dry Fruits, Carefully Selected for You
             </p>
             <Nav />

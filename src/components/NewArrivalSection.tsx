@@ -13,7 +13,7 @@ const NewArrivalSection = () => {
         </h4>
       </div>
 
-      <div className="flex flex-wrap md:items-stretch max-sm:mx-auto gap-5 gap-y-8 py-4 px-2 lg:justify-between justify-center">
+      <div className="flex flex-wrap md:items-stretch max-sm:mx-auto gap-5 gap-y-8 py-4 px-2 xl:justify-between justify-center">
         {newArrivalProducts.map((product, index) => (
           <ProductCard {...product} key={index} />
         ))}

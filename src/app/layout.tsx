@@ -5,6 +5,11 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
 import Provider from "@/components/Provider";
+import { lazy, Suspense } from "react";
+import Loading from "@/components/Loading";
+import LayoutLoader from "@/components/LayoutLoader";
+
+const LazyProvider = lazy(() => import("@/components/Provider"));
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,22 +34,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="sticky -top-8 z-50 bg-background space-y-1">
-          <p className="w-full bg-zinc-500 text-center py-1">
-            Premium Dry Fruits, Carefully Selected for You
-          </p>
-          <Nav />
-        </header>
+        <LayoutLoader>
+          <header className="sticky -top-8 z-50 bg-background space-y-1">
+            <p className="w-full bg-zinc-500 text-center py-1">
+              Premium Dry Fruits, Carefully Selected for You
+            </p>
+            <Nav />
+          </header>
 
-        <Provider>
-          <main className="h-full pt-4 space-y-10">{children}</main>
-        </Provider>
-        <Toaster />
-        <footer className="lg:px-20 px-10 bg-[#D6A67F]/20 backdrop-blur-2xl py-10 mt-10">
-          <Footer />
-        </footer>
+          <LazyProvider>
+            <main className="h-full pt-4 space-y-10">
+              <Suspense fallback={<Loading />}>{children}</Suspense>
+            </main>
+          </LazyProvider>
+
+          <Toaster />
+
+          <footer className="lg:px-20 px-10 bg-[#D6A67F]/20 backdrop-blur-2xl py-10 mt-10">
+            <Footer />
+          </footer>
+        </LayoutLoader>
       </body>
     </html>
   );

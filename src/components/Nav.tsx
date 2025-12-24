@@ -36,7 +36,7 @@ const Nav = () => {
 
   if (isMobile)
     return (
-      <div className="max-w-md flex items-center px-5 justify-between">
+      <div className="max-w-md py-3 flex items-center px-5 justify-between">
         <Sheet>
           <SheetTrigger className="text-zinc-100 hidden max-lg:flex">
             <Menu className="text-zinc-700" />
@@ -76,7 +76,7 @@ const Nav = () => {
   return (
     <nav
       aria-label="Primary navigation"
-      className="flex justify-between md:px-20 px-5 items-center py-3 max-w-4xl"
+      className="flex justify-between md:px-20 px-5 items-center py-3 w-full"
     >
       <div className="nav-brand">
         <Link href="/" className="">

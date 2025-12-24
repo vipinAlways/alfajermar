@@ -23,6 +23,7 @@ export default function Home() {
             }
             alt={"hero-image"}
             className="rounded-lg object-cover object-center  absolute top-0 left-0 -z-10"
+            priority={true}
           />
 
           <div className="z-10 lg:w-140 flex flex-col brder border-black gap-4">

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const MyImage = ({ src, alt, className, height, width }: MyImage) => {
+const MyImage = ({ src, alt, className, height, width, priority }: MyImage) => {
   return (
     <>
       <Image
@@ -9,7 +9,7 @@ const MyImage = ({ src, alt, className, height, width }: MyImage) => {
         alt={alt}
         className={className}
         {...(height && width ? { height, width } : { fill: true })}
-        loading="lazy"
+        {...(priority ? { priority } : { loading: "lazy" })}
         sizes="(max-width: 768px) 100vw, 50vw"
       />
     </>

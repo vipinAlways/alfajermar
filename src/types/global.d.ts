@@ -28,4 +28,5 @@ interface MyImage {
   width?: number;
   height?: number;
   className?: string;
+  priority?:boolean
 }

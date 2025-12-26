@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "www.nutraj.com",
       },
+      {
+        protocol: "https",
+        hostname: "dryfruithouse.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+      },
     ],
   },
 };

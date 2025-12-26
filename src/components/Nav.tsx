@@ -1,23 +1,17 @@
 "use client";
 import Link from "next/link";
 import { Input } from "./ui/input";
-import { Heart, Menu, ShoppingBasket, ShoppingCart } from "lucide-react";
+import { Heart, User, Home, ShoppingCart, StoreIcon } from "lucide-react";
 import { Button } from "./ui/button";
 import MyImage from "./MyImage";
 import { toast } from "sonner";
 import { useIsMobile } from "@/hooks/use-mobile";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
+
 const NavLinks: Nav[] = [
   {
     name: "Shop",
     href: "/shop",
-    icon: <ShoppingBasket className="size" />,
+    icon: <StoreIcon className="size" />,
   },
   {
     name: "",
@@ -25,7 +19,7 @@ const NavLinks: Nav[] = [
     icon: <Heart className="size" />,
   },
   {
-    name: "",
+    name: "Cart",
     href: "/cart",
     icon: <ShoppingCart className="size-" />,
   },
@@ -33,37 +27,47 @@ const NavLinks: Nav[] = [
 
 const Nav = () => {
   const isMobile = useIsMobile();
-
+  
   if (isMobile)
     return (
-      <div className="max-w-md py-3 flex items-center px-5 justify-between">
-        <Sheet >
-          <SheetTrigger className="text-zinc-100 hidden max-lg:flex">
-            <Menu className="text-zinc-700" />
-          </SheetTrigger>
-          <SheetContent
-            side={"left"}
-            className="w-60 bg-accent text-accent-foreground"
-          >
-            <SheetHeader>
-              <SheetTitle>Al Fajer Mart</SheetTitle>
-              <nav className="flex flex-col gap-y-2 pt-2">
-                <Link
-                  href={"#"}
-                  className="w-full items-center hover:bg-zinc-600 p-1.5 rounded-lg flex text-lg gap-2 font-semibold"
-                >
-                  <ShoppingBasket className="size-9 " /> Shop
-                </Link>
-              </nav>
-            </SheetHeader>
-          </SheetContent>
-        </Sheet>
+      <div className="w-full py-3 flex items-center px-10 justify-between">
+        <div>
+          <Link href="/" className="">
+            <MyImage
+              src={
+                "https://alfajermart.com/wp-content/uploads/2024/05/alfajar-lgo.webp"
+              }
+              alt="logo"
+              width={160}
+              height={100}
+            />
+          </Link>
+        </div>
+        <nav className="w-full fixed bottom-0 left-1/2 -translate-x-1/2 z-20 flex items-center justify-evenly padd-5">
+          <div className="w-full h-20 rounded-xl backdrop-blur-xl dark:bg-[#a2818144] bg-[#dfd5d27a] flex items-center justify-evenly">
+            <button className="px-4 py-2 hover:underline text-base flex flex-col items-center ">
+              <Home />
+            </button>
+            {NavLinks.map((link, index) => (
+              <button
+                key={index}
+                className="px-4 py-2 hover:underline text-base flex flex-col items-center "
+              >
+                {link.icon}
+              </button>
+            ))}
+
+            <button className="px-4 py-2 hover:underline text-base flex flex-col items-center ">
+              <User />
+            </button>
+          </div>
+        </nav>
         <form role="search" className="">
           <Input
             id="search"
             type="search"
             placeholder="Search dry fruits"
-            className="sm:w-64 w-48"
+            className="w-xl"
             autoComplete="off"
           />
         </form>
@@ -76,16 +80,16 @@ const Nav = () => {
   return (
     <nav
       aria-label="Primary navigation"
-      className="flex justify-between md:px-20 px-5 items-center py-3 w-full"
+      className="flex justify-between md:px-20 px-5 items-center py-3 w-full bg-[#f7ede5af] "
     >
-      <div className="nav-brand">
+      <div>
         <Link href="/" className="">
           <MyImage
             src={
               "https://alfajermart.com/wp-content/uploads/2024/05/alfajar-lgo.webp"
             }
             alt="logo"
-            width={120}
+            width={160}
             height={100}
           />
         </Link>
@@ -96,7 +100,7 @@ const Nav = () => {
           id="search"
           type="search"
           placeholder="Search dry fruits"
-          className="w-90"
+          className="w-3xl p-2"
           autoComplete="off"
         />
       </form>

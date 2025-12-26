@@ -18,10 +18,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-import { Code } from "lucide-react";
-import { Button } from "./ui/button";
+
+import { Button, buttonVariants } from "./ui/button";
 import MyImage from "./MyImage";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 const MyDialog = ({
   className,
@@ -38,7 +39,8 @@ const MyDialog = ({
         <Drawer>
           <DrawerTrigger>
             {" "}
-            <Code className="size-10 text-zinc-200 " />
+            {/* <Code className="size-10 text-zinc-200 " /> */}
+            Learn More
           </DrawerTrigger>
           <DrawerContent className="p-1">
             <DrawerHeader>
@@ -84,9 +86,13 @@ const MyDialog = ({
               </div>
             </div>
             <DrawerFooter>
-              <Button type="button" onClick={() => toast("comming soon")}>Learn More</Button>
+              <Button type="button" onClick={() => toast("comming soon")}>
+                View Product
+              </Button>
               <DrawerClose>
-                <Button variant="outline" className="w-full">Cancel</Button>
+                <Button variant="outline" className="w-full bg-white">
+                  Cancel
+                </Button>
               </DrawerClose>
             </DrawerFooter>
           </DrawerContent>
@@ -96,9 +102,11 @@ const MyDialog = ({
   return (
     <div className={className}>
       <Dialog>
-        <DialogTrigger>
+        <DialogTrigger
+          className={cn(buttonVariants({ variant: "default" }), "w-full")}
+        >
           {" "}
-          <Code className="size-10 text-zinc-200 " />{" "}
+          Learn More
         </DialogTrigger>
         <DialogContent className="max-w-3xl min-w-xl">
           <DialogHeader>
@@ -132,7 +140,7 @@ const MyDialog = ({
               )}
 
               <ul className="list-disc list-inside">
-                <li> Hand Picked Kashmiri Whole Mirchi</li>
+                <li className="text-st"> Hand Picked Kashmiri Whole Mirchi</li>
                 <li>
                   Hand Sorted To make sure every Chilli is of good quality
                 </li>
@@ -145,12 +153,12 @@ const MyDialog = ({
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline" onClick={() => toast("comming soon")}>
+              <Button variant="outline" className="bg-white">
                 Cancel
               </Button>
             </DialogClose>
             <Button type="submit" onClick={() => toast("comming soon")}>
-              Learn More
+              View Product
             </Button>
           </DialogFooter>
         </DialogContent>

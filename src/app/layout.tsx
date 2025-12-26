@@ -4,7 +4,6 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
-import Provider from "@/components/Provider";
 import { lazy, Suspense } from "react";
 import Loading from "@/components/Loading";
 import LayoutLoader from "@/components/LayoutLoader";
@@ -39,9 +38,10 @@ export default function RootLayout({
         <LayoutLoader>
           <header className="sticky -top-8 z-50 bg-background space-y-1">
             <p className="w-full bg-zinc-500 text-center py-1 text-sm md:text-md">
-              Premium Dry Fruits, Carefully Selected for You
+              Let me know if any change required
             </p>
             <Nav />
+         
           </header>
 
           <LazyProvider>

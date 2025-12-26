@@ -1,4 +1,4 @@
-import { FacebookIcon, Image, InstagramIcon, TwitterIcon } from "lucide-react";
+
 
 export const footerData = {
   company: {
@@ -29,10 +29,3 @@ export const footerData = {
     ],
   },
 };
-
-export const socialLinks = [
-  { icon: FacebookIcon, href: "#", label: "Facebook" },
-  { icon: TwitterIcon, href: "#", label: "Twitter" },
-  { icon: InstagramIcon, href: "#", label: "Instagram" },
-  { icon: Image, href: "#", label: "Pinterest" },
-];

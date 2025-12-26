@@ -12,15 +12,8 @@ const ProductCard = (product: Product) => {
       </div>
     );
   return (
-    <div className="group xl:w-80 lg:w-96 sm:w-72 w-52 rounded-lg space-y-2 aspect-square">
+    <div className="group xl:w-80 lg:w-96 sm:w-72 w-52 rounded-lg flex flex-col justify-between gap-y-2 spect-square">
       <div className="relative border w-full  aspect-square overflow-hidden rounded-lg">
-        <MyDialog
-          className={
-            "absolute right-2 bottom-2 md:opacity-0 group-hover:opacity-100  duration-100 ease-out -rotate-45"
-          }
-          product={product}
-        />
-
         {product.off && (
           <span className="text-red-500 rounded-full size-9 bg-white p-0.5 text-xs absolute top-2 left-2 flex items-center justify-center">
             -{product.off}%
@@ -52,6 +45,8 @@ const ProductCard = (product: Product) => {
           {product.maxPrice.toFixed(2)}
         </p>
       )}
+
+      <MyDialog className={"  duration-100 ease-out w-full "} product={product} />
     </div>
   );
 };

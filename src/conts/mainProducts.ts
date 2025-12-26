@@ -21,11 +21,6 @@ export const mainProducts: MainProduct[] = [
     bg: "#861F3F",
   },
   {
-    image: "/garlic.png",
-    name: "Garlic",
-    bg:"#D6A67F"
-  },
-  {
     image: "/kehwatea.png",
     name: "Kehwa Tea",
     bg:"#D6A67F"

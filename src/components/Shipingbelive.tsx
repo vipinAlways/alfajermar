@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Shipingbelive = () => {
   return (
-    <div className="bg-[radial-gradient(circle,rgba(143,72,14,1)_0%,rgba(10,1,1,1)_100%)] rounded-3xl px-6 py-4 min-w-full">
+    <div className="bg-[radial-gradient(circle,rgba(143,72,14,1)_0%,rgba(10,1,1,1)_100%)] rounded-3xl px-6 py-4 md:w-4/5">
       <div className=" w-full ">
         <div className="flex flex-wrap items-stretch justify-evenly  ">
           {features.map((feature, index) => {

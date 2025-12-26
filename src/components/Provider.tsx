@@ -9,7 +9,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-  });
+  },[]);
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -22,7 +22,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
 
     requestAnimationFrame(update);
     return () => lenis.destroy();
-  });
+  },[]);
 
   if (!mounted) return <Loading/>;
   return <>{children}</>;

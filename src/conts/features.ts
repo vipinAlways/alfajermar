@@ -1,8 +1,8 @@
 export const features = [
     {
       image: "https://www.nutraj.com/cdn/shop/files/Cash_on_delivery.gif?v=1699438377",
-      title: 'Fast & Secure Shipping',
-      subtitle: 'All over World',
+      title: 'Free shipping in India ',
+      subtitle: 'on order over Rs.999',
       color: 'text-red-500'
     },
     {

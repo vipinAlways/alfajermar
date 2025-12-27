@@ -11,108 +11,114 @@ const NavLinks: Nav[] = [
   {
     name: "Shop",
     href: "/shop",
-    icon: <StoreIcon className="size" />,
+    icon: <StoreIcon className="size-5" />,
   },
   {
     name: "",
     href: "/wishlist",
-    icon: <Heart className="size" />,
+    icon: <Heart className="size-5" />,
   },
   {
     name: "Cart",
     href: "/cart",
-    icon: <ShoppingCart className="size-" />,
+    icon: <ShoppingCart className="size-5" />,
   },
 ];
 
 const Nav = () => {
   const isMobile = useIsMobile();
-  
-  if (isMobile)
+
+  // Mobile Layout
+  if (isMobile) {
     return (
-      <div className="w-full py-3 flex items-center px-10 justify-between">
-        <div>
-          <Link href="/" className="">
+      <>
+        {/* Top bar with logo and search */}
+        <div className="w-full py-3 px-5 flex items-center justify-between gap-3">
+          <Link href="/" className="shrink-0">
             <MyImage
-              src={
-                "https://alfajermart.com/wp-content/uploads/2024/05/alfajar-lgo.webp"
-              }
+              src="https://alfajermart.com/wp-content/uploads/2024/05/alfajar-lgo.webp"
               alt="logo"
-              width={160}
-              height={100}
+              width={60}
+              height={60}
             />
           </Link>
+
+          <form role="search" className=" max-w-sm">
+            <Input
+              id="search"
+              type="search"
+              placeholder="Search"
+              className="maxw-full text-xs p-1"
+              autoComplete="off "
+            />
+          </form>
+          <Button onClick={() => toast("coming soon")} className="text-xs py-1">
+            Login
+          </Button>
         </div>
-        <nav className="w-full fixed bottom-0 left-1/2 -translate-x-1/2 z-20 flex items-center justify-evenly padd-5">
-          <div className="w-full h-20 rounded-xl backdrop-blur-xl dark:bg-[#a2818144] bg-[#dfd5d27a] flex items-center justify-evenly">
-            <button className="px-4 py-2 hover:underline text-base flex flex-col items-center ">
-              <Home />
-            </button>
+
+        {/* Bottom Navigation Bar */}
+        <nav className="fixed bottom-0 left-0 right-0 z-50 pb-safe">
+          <div className="w-full h-16 rounded-t-2xl backdrop-blur-xl dark:bg-[#a2818144] bg-[#dfd5d27a] flex items-center justify-evenly border-t border-white/20">
+            <Link
+              href="/"
+              className="px-4 py-2 hover:bg-white/10 rounded-lg transition-colors flex flex-col items-center justify-center"
+            >
+              <Home className="size-6" />
+            </Link>
+
             {NavLinks.map((link, index) => (
-              <button
+              <Link
                 key={index}
-                className="px-4 py-2 hover:underline text-base flex flex-col items-center "
+                href={link.href}
+                className="px-4 py-2 hover:bg-white/10 rounded-lg transition-colors flex flex-col items-center justify-center"
               >
                 {link.icon}
-              </button>
+              </Link>
             ))}
 
-            <button className="px-4 py-2 hover:underline text-base flex flex-col items-center ">
-              <User />
+            <button className="px-4 py-2 hover:bg-white/10 rounded-lg transition-colors flex flex-col items-center justify-center">
+              <User className="size-6" />
             </button>
           </div>
         </nav>
-        <form role="search" className="">
-          <Input
-            id="search"
-            type="search"
-            placeholder="Search dry fruits"
-            className="w-xl"
-            autoComplete="off"
-          />
-        </form>
-        <div className="flex items-center gap-3 ">
-          <Heart className="size-6" />
-          <ShoppingCart className="size-6" />
-        </div>
-      </div>
+      </>
     );
+  }
+
+  // Desktop Layout
   return (
     <nav
       aria-label="Primary navigation"
-      className="flex justify-between md:px-20 px-5 items-center py-3 w-full bg-[#f7ede5af] "
+      className="flex justify-between md:px-20 px-5 items-center py-3 w-full bg-[#f7ede5af]"
     >
-      <div>
-        <Link href="/" className="">
-          <MyImage
-            src={
-              "https://alfajermart.com/wp-content/uploads/2024/05/alfajar-lgo.webp"
-            }
-            alt="logo"
-            width={160}
-            height={100}
-          />
-        </Link>
-      </div>
+      <Link href="/" className="shrink-0">
+        <MyImage
+          src="https://alfajermart.com/wp-content/uploads/2024/05/alfajar-lgo.webp"
+          alt="logo"
+          width={160}
+          height={100}
+        />
+      </Link>
 
-      <form role="search" className="">
+      <form role="search" className="flex-1 max-w-2xl mx-8">
         <Input
           id="search"
           type="search"
           placeholder="Search dry fruits"
-          className="w-3xl p-2"
+          className="w-full p-2"
           autoComplete="off"
         />
       </form>
 
-      <ul className="flex gap-4 items-center">
+      <ul className="flex gap-4 items-center shrink-0">
         <li>
-          <Button onClick={() => toast("comming soon")}>Login</Button>
+          <Button onClick={() => toast("coming soon")}>Login</Button>
         </li>
         {NavLinks.map((links, index) => (
-          <li key={index} className="">
-            <Link href={links.href} className="flex  items-center gap-1">
-              <span>{links.icon}</span> <span>{links.name}</span>{" "}
+          <li key={index}>
+            <Link href={links.href} className="flex items-center gap-1">
+              <span>{links.icon}</span> <span>{links.name}</span>
             </Link>
           </li>
         ))}

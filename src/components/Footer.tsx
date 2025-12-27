@@ -7,7 +7,6 @@ import { footerData } from "@/conts/footer";
 import { toast } from "sonner";
 import { Locate } from "lucide-react";
 
-
 const Footer = () => {
   return (
     <div className="w-full flex justify-between   items-center max-lg:flex-col gap-5">
@@ -49,7 +48,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
           <div>
             <h3 className="text-md font-medium text-gray-700 mb-4 tracking-wider">
               {footerData.company.title}

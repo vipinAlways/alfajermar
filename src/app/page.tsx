@@ -15,16 +15,29 @@ import { mainProducts } from "@/conts/mainProducts";
 import Shipingbelive from "@/components/Shipingbelive";
 import { heroSetion } from "@/conts/herosection";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CircleDollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { CarouselApi } from "@/components/ui/carousel";
 import Faq from "@/components/Faq";
+import MyCarousel from "@/components/MyCarousel";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const [visibleElements, setVisibleElements] = useState(new Set());
   const [visibleHeroIndex, setVisibleHeroIndex] = useState<number>(0);
+  const [visibleCertificateIndex, setVisibleCertificateIndex] =
+    useState<number>(0);
+  const [activecolor, setActiveColor] = useState<{
+    bg: string;
+    text: string;
+  }>({
+    bg: "",
+    text: "",
+  });
   const observerRef = useRef<IntersectionObserver | null>(null);
   const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+  const [certifiateApi, setCertificateapi] = useState<CarouselApi>();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,12 +66,13 @@ export default function Home() {
       observer.disconnect();
     };
   }, []);
-
   useEffect(() => {
     if (!carouselApi) return;
 
     const onSelect = () => {
-      setVisibleHeroIndex(carouselApi.selectedScrollSnap());
+      const index = carouselApi.selectedScrollSnap();
+
+      setVisibleHeroIndex(index);
     };
 
     onSelect();
@@ -69,12 +83,43 @@ export default function Home() {
       carouselApi.off("select", onSelect);
     };
   }, [carouselApi]);
+  useEffect(() => {
+    if (!certifiateApi) return;
+
+    const onSelect = () => {
+      const certificateIndex = certifiateApi.selectedScrollSnap();
+      setVisibleCertificateIndex(certificateIndex);
+    };
+
+    onSelect();
+
+    certifiateApi.on("select", onSelect);
+
+    return () => {
+      certifiateApi.off("select", onSelect);
+    };
+  }, [certifiateApi]);
+
+  useEffect(() => {
+    const activebg = heroSetion[visibleHeroIndex]?.bg;
+    const activeText = heroSetion[visibleHeroIndex]?.text;
+
+    if (activeText && activebg) {
+      setActiveColor(() => ({ text: activeText, bg: activebg }));
+    }
+  }, [visibleHeroIndex]);
 
   const isVisible = (id: string) => visibleElements.has(id);
 
   return (
     <>
-      <section className="md:px-10 px-5 relative space-y-6">
+      <section
+        className={cn(
+          "md:px-10 px-5 relative pb-10 transition-all ease-linear duration-150 delay-75 ",
+          activecolor.bg,
+          activecolor.text
+        )}
+      >
         <div className="overflow-hidden w-full no-scrollbar bg-[#d88b4c] text-white py-2 -z-20">
           <div className="marquee">
             {[...Array(4)].map((_, i) => (
@@ -93,7 +138,91 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <Carousel
+
+        <section
+          id="carousel-section"
+          className="grid xl:grid-cols-3 grid-cols-1 w-full items-stretch leading-none xl:gap-40 xl:h-[70vh] p-4"
+        >
+          {/* LEFT TEXT CONTENT */}
+          <div className="w-full p-2 flex xl:flex-col max-sm:flex-col xl:gap-4 gap-10 xl:order-1 order-2 ">
+            <h1 className="lg:text-5xl min-w-fit text-3xl flex flex-col font-semibold relative">
+              <span className="font-bold">Pure Kashmiri</span>
+              <span className="font-semibold">Dry Fruits</span>
+              <span className="text-red-600 scale-125 top-1/2 left-1/5 absolute -translate-x-1/3 -rotate-10 lg:text-6xl text-4xl -translate-y-1/2">
+                {" "}
+                and
+              </span>
+              <span className="text-red-600 lg:h-12 h-6"> </span>
+              <span className="font-bold"> Himalayan </span>
+              <span className="font-semibold">Shilajit</span>
+            </h1>
+
+            <p className={cn(`${activecolor.text}/30 max-md:hidden`)}>
+              We are a Kashmir-based distributor delivering pure Shilajit,
+              premium saffron, and high-quality dry fruits directly from the
+              source. Try once, trust forever.
+            </p>
+          </div>
+
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full mx-auto group xl:order-2 order-1"
+            setApi={setCarouselApi}
+          >
+            <CarouselContent className="flex gap-6  lg:h-full h-60 z-40 ">
+              {heroSetion.map((hero, index) => (
+                <CarouselItem
+                  key={index}
+                  className="relative z-10  flex items-center justify-center lg:h-96"
+                >
+                  <MyImage
+                    src={hero.src}
+                    alt="product"
+                    className="relative z-20 w-auto h-auto object-contain"
+                    height={120}
+                    width={120}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            <CarouselPrevious className="group-hover:opacity-100 bg-white/20 backdrop-blur-2xl lg:opacity-0 transition-all duration-100 ease-out  size-16 -left-6" />
+            <CarouselNext className=" text-3xl size-16 bg-white/20 group-hover:opacity-100 backdrop-blur-2xl xl:opacity-0 transition-all duration-100 ease-out -right-6 " />
+          </Carousel>
+
+          {/* RIGHT INDICATOR LIST */}
+          <div className="flex w-full  order-3 relative flex-col gap-6 xl:w-96  items-start">
+            <h1
+              className={cn(
+                activecolor.text,
+                "font-bold text-2xl text-center w-full"
+              )}
+            >
+              Our Offerings
+            </h1>
+            <div className="flex xl:flex-col min-w-full  items-center justify-evenly gap-6">
+              {heroSetion.map((hero, i) => (
+                <div
+                  key={i}
+                  className={cn(
+                    "p-3 rounded-lg transition-all ease-linear duration-100 ",
+                    i === visibleHeroIndex
+                      ? `${activecolor.bg} ${activecolor.text}`
+                      : "bg-white/30 backdrop-blur-3xl text-zinc-700 "
+                  )}
+                >
+                  <h3 className="font-semibold ">Pure Kashmiri {hero.name}</h3>
+                  <p>{hero.para}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* <Carousel
           setApi={setCarouselApi}
           className="relative group"
           opts={{
@@ -142,8 +271,8 @@ export default function Home() {
                 className={cn(
                   "rounded-full transition-all duration-300",
                   i === visibleHeroIndex
-                    ? "bg-white size-5"
-                    : "bg-white/40 size-3"
+                    ? "bg-[#D88B4C] size-5"
+                    : "bg-white size-3"
                 )}
               />
             ))}
@@ -151,7 +280,90 @@ export default function Home() {
 
           <CarouselPrevious className="absolute left-6 top-1/2 -translate-y-1/2 invisible group-hover:visible pointer-events-none group-hover:pointer-events-auto transition-all duration-300 ease-linear bg-white/10" />
           <CarouselNext className="absolute right-6 top-1/2 -translate-y-1/2 invisible group-hover:visible pointer-events-none group-hover:pointer-events-auto transition-all duration-300 ease-linear bg-white/10" />
+        </Carousel> */}
+      </section>
+
+      <section
+        data-animate
+        data-id="products"
+        className={`md:px-20 px-5 space-y-8 py-10 transition-all duration-700 ease-out ${
+          isVisible("products")
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-20"
+        }`}
+      >
+        <div className="space-y-4">
+          <h1 className="font-semibold text-2xl text-center">Explore</h1>
+          <h1 className="font-semibold lg:text-6xl text-4xl text-center">
+            Our Healthy Menu
+          </h1>
+        </div>
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="md:w-full w-4/5 mx-auto"
+        >
+          <CarouselContent className="flex gap-6">
+            {mainProducts.map(({ name, image, bg }, index) => (
+              <CarouselItem
+                key={index}
+                className="basis-full sm:basis-1/3 xl:basis-1/5 px-4 "
+              >
+                <Link
+                  href={"#"}
+                  className="flex flex-col items-center space-y-4"
+                >
+                  <div
+                    className="lg:w-64 aspect-square  w-48 rounded-lg overflow-hidden flex flex-col min-h-fit items-center justify-center"
+                    style={{ backgroundColor: bg }}
+                  >
+                    <div className="w-3/5 aspect-square relative">
+                      <MyImage
+                        src={image}
+                        alt={name}
+                        className="object-contain rounded-full"
+                      />
+                    </div>
+
+                    <h4 className="text-white md:text-lg text-sm font-semibold  text-center z-20">
+                      {name}
+                    </h4>
+                    <p className="text-zinc-800">6 more</p>
+                  </div>
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          <CarouselPrevious />
+          <CarouselNext />
         </Carousel>
+      </section>
+
+      <section
+        data-animate
+        data-id="best-product"
+        className={`md:px-20 px-5 transition-all duration-700 ease-out ${
+          isVisible("best-product")
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-20"
+        }`}
+      >
+        <BestProduct />
+      </section>
+
+      <section
+        data-animate
+        data-id="new-arrival"
+        className={`md:px-20 px-5 text-[#4F1C17] transition-all duration-700 ease-out ${
+          isVisible("new-arrival")
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-20"
+        }`}
+      >
+        <NewArrivalSection />
       </section>
 
       <section
@@ -187,83 +399,6 @@ export default function Home() {
           <Shipingbelive />
         </div>
       </section>
-
-      <section
-        data-animate
-        data-id="products"
-        className={`md:px-20 px-5 space-y-8 py-10 transition-all duration-700 ease-out ${
-          isVisible("products")
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-20"
-        }`}
-      >
-        <h1 className="font-bold text-4xl text-center">Our Products</h1>
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="md:w-full w-4/5 mx-auto"
-        >
-          <CarouselContent className="flex gap-6">
-            {mainProducts.map(({ name, image, bg }, index) => (
-              <CarouselItem
-                key={index}
-                className="basis-full sm:basis-1/3 xl:basis-1/5 px-4 "
-              >
-                <div className="flex flex-col items-center space-y-4">
-                  <div
-                    className="lg:w-60 aspect-square  w-48 rounded-full overflow-hidden flex items-center justify-center"
-                    style={{ backgroundColor: bg }}
-                  >
-                    <div className="w-4/5 aspect-square relative">
-                      <MyImage
-                        src={image}
-                        alt={name}
-                        className="object-contain rounded-full"
-                        height={180}
-                        width={180}
-                      />
-                    </div>
-
-                    <h4 className="text-white md:text-lg text-sm font-semibold absolute bottom-4 text-center z-20">
-                      {name}
-                    </h4>
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
-      </section>
-
-      <section
-        data-animate
-        data-id="best-product"
-        className={`md:px-20 px-5 transition-all duration-700 ease-out ${
-          isVisible("best-product")
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-20"
-        }`}
-      >
-        <BestProduct />
-      </section>
-
-      <section
-        data-animate
-        data-id="new-arrival"
-        className={`md:px-20 px-5 transition-all duration-700 ease-out ${
-          isVisible("new-arrival")
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-20"
-        }`}
-      >
-        <NewArrivalSection />
-      </section>
-
       <section
         data-animate
         data-id="certificates"
@@ -281,7 +416,8 @@ export default function Home() {
             align: "start",
             loop: true,
           }}
-          className="w-[80%] mx-auto"
+          className=" mx-auto"
+          setApi={setCertificateapi}
         >
           <CarouselContent className="flex gap-6">
             {certificates.map(({ certificate, label }, index) => (
@@ -309,9 +445,22 @@ export default function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <div className="flex gap-2 h-6 justify-center items-center md:absolute md:bottom-6 md:left-1/2 md:-translate-x-1/2 max-md:mt-2">
+            {certificates.map((_, i) => (
+              <span
+                key={i}
+                className={cn(
+                  "rounded-full transition-all duration-300",
+                  i === visibleCertificateIndex
+                    ? "bg-[#D88B4C] size-5"
+                    : "bg-white size-3"
+                )}
+              />
+            ))}
+          </div>
 
-          <CarouselPrevious className="max-lg:hidden" />
-          <CarouselNext className="max-lg:hidden" />
+          <CarouselPrevious className="max-md:left-6"/>
+          <CarouselNext className="right-6"/>
         </Carousel>
       </section>
 
@@ -319,7 +468,7 @@ export default function Home() {
         data-animate
         data-id="faq"
         className={cn(
-          `lg:px-20 md:px-10 px-5  transition-all duration-700 ease-out `,
+          `lg:px-20 md:px-10 px-5 text-[#4F1C17]  transition-all duration-700 ease-out `,
           isVisible("shipping")
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-20"

@@ -1,61 +1,60 @@
 export const newArrivalProducts: Product[] = [
   {
-    name: "Kashmir Walnuts in Shell |Kashmiri| Sabut Akhrot ,Walnuts with Shell",
+    name: "Kashmir Walnuts in Shell ",
     maxPrice: 1000,
-    image:
-      "https://alfajermart.com/wp-content/uploads/2024/08/walnuts-1kg-768x768.jpg",
+    image: "/wallnut.png",
     minPrice: 500,
+    catchLine: "|Kashmiri| Sabut Akhrot ,Walnuts with Shell",
   },
   {
     name: "Original Kashmiri Mamra Almonds",
     maxPrice: 2000,
-    image:
-      "https://alfajermart.com/wp-content/uploads/2024/08/almond-500g-768x768.jpg",
+    image: "/almonds.png",
     minPrice: 1000,
+    catchLine: " Premium Quality, Protein-Rich Almonds",
   },
   {
-    name: "Kashmiri Red Chilli Powder by Al Fajer Mart - Mild, Flavorful, and Aromatic",
+    name: "Red Chilli Powder",
     maxPrice: 300,
     minPrice: 250,
-    image: "https://alfajermart.com/wp-content/uploads/2024/05/Food-social-media-promotion-and-instagram-banner-post-6-768x768.png",
-    off:17
+    image: "/redchilliPowder.png",
+    off: 17,
+    catchLine: " Mild, Flavorful, and Aromatic",
   },
   {
-    name: "Experience the Rich Flavor of Pure Kashmiri Honey",
+    name: "Pure Kashmiri Honey",
     maxPrice: 400,
     minPrice: 200,
-    image: "https://alfajermart.com/wp-content/uploads/2024/05/7-1-768x768.jpg",
+    image: "/honey.png",
+    catchLine: "Experience the Rich Flavor",
   },
   {
     name: "Pure kasmiri Apricot",
     maxPrice: 400,
     minPrice: 0,
-    image: "https://alfajermart.com/wp-content/uploads/2024/05/Pure-healthy-768x768.png",
+    image: "/apricot.png",
+    catchLine: " Premium Quality, Protein-Rich Apricot",
   },
   {
-    name: "Kashmiri Almonds by Al Fajer Mart - Premium Quality, Protein-Rich Nuts",
+    name: "Kashmiri Almonds by Al Fajer Mart ",
     maxPrice: 1000,
     minPrice: 500,
-    image: "https://alfajermart.com/wp-content/uploads/2024/08/almond-1kg-768x768.jpg",
+    image: "/almonds.png",
+    catchLine: "Premium Quality, Protein-Rich Nuts",
   },
   {
-    name: "Discover the Health Benefits of Pure Kashmiri Walnuts from Al Fajer Mart",
+    name: "Kashmiri Rosted Walnuts",
     maxPrice: 1000,
     minPrice: 500,
-    image: "https://alfajermart.com/wp-content/uploads/2024/05/23-768x768.png",
+    image: "/rostedWallnut.png",
+    catchLine: "Discover the Health Benefits of Pure Kashmiri Walnuts",
   },
   {
-    name: "Kashmiri | Garlic | Lasun",
+    name: "Kashmiri- Garlic | Lasun",
     maxPrice: 1600,
     minPrice: 800,
-    image: "https://alfajermart.com/wp-content/uploads/2024/05/Pure-healthy-768x768.jpg",
-    off:50
+    image: "/garlic-pack.png",
+    off: 50,
+    catchLine: "Discover the Health Benefits of Pure Kashmiri Garlic | Lasun",
   },
-  // {
-  //   name: "",
-  //   maxPrice: 1600,
-  //   minPrice: 800,
-  //   image: "",
-    
-  // },
 ];

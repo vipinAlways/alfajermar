@@ -5,6 +5,7 @@ export const shilajit: Product[] = [
     maxPrice: 1930,
     image: "https://alfajermart.com/wp-content/uploads/2024/05/4-3-768x768.jpg",
     off: 43,
+    
   },
   {
     name: "Healthy Kashmiri Saffron (Kesar) - Premium Spice Good For Health",

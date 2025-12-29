@@ -47,6 +47,7 @@
 }
 
 :root {
+  --myBackground: #f7ede5af;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -237,8 +238,10 @@
 
 body {
   overflow-x: hidden;
-  background-color: #f7ede5af;
+  background-color: var(--myBackground);
+  transition: background-color 0.6s ease;
 }
+
 @layer utilities {
   @keyframes marquee {
     0% {
@@ -263,3 +266,5 @@ body {
     display: none;
   }
 }
+
+

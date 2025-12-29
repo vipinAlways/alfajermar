@@ -10,12 +10,13 @@ interface Product {
   minPrice: number;
   image: string;
   off?: number;
+  catchLine?: string;
 }
 
 interface MainProduct {
   name: string;
   image: string;
-  bg:string
+  bg: string;
 }
 interface Certificate {
   certificate: string;
@@ -28,5 +29,16 @@ interface MyImage {
   width?: number;
   height?: number;
   className?: string;
-  priority?:boolean
+  priority?: boolean;
+}
+interface Data {
+  src: string[];
+  hoverImage?: string[];
+  para?: string;
+  heading?: string;
+  label?: string;
+  button: {
+    label: string;
+    Icon: React.ReactElement;
+  };
 }

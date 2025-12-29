@@ -3,8 +3,8 @@ import ProductCard from "./ProductCard";
 
 const BestProduct = () => {
   return (
-    <div className="w-full flex max-xl:flex-col xl:items-stretch items-center justify-between gap-10">
-      <div className="md:p-15 xl:p-20 p-5 flex flex-col gap-5 bg-[#D6A67F]/20 backdrop-blur-3xl rounded-lg">
+    <div className="w-full flex max-xl:flex-col xl:items-stretch items-center justify-between gap-5">
+      <div className="md:p-15 xl:p-20 p-5 w-full flex flex-col gap-5 bg-[#D6A67F]/20 backdrop-blur-3xl rounded-lg">
         <span>100% Best Quality Shilajit</span>
 
         <div className="space-y-6 ">
@@ -20,7 +20,7 @@ const BestProduct = () => {
         </div>
       </div>
 
-      <div className="flex gap-5 items-center w-full justify-between">
+      <div className="flex gap-3 max-md:flex-col items-center w-full justify-between">
         {shilajit.map((product, index) => (
           <ProductCard {...product} key={index} />
         ))}

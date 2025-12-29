@@ -27,7 +27,7 @@ const NavLinks: Nav[] = [
 
 const Nav = () => {
   const isMobile = useIsMobile();
-
+  console.log("isMobile", isMobile);
   // Mobile Layout
   if (isMobile) {
     return (
@@ -48,7 +48,7 @@ const Nav = () => {
               id="search"
               type="search"
               placeholder="Search"
-              className="maxw-full text-xs p-1"
+              className="w-40 text-xs px-3"
               autoComplete="off "
             />
           </form>
@@ -96,8 +96,8 @@ const Nav = () => {
         <MyImage
           src="https://alfajermart.com/wp-content/uploads/2024/05/alfajar-lgo.webp"
           alt="logo"
-          width={160}
-          height={100}
+          width={120}
+          height={120}
         />
       </Link>
 
